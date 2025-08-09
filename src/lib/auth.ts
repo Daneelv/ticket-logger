@@ -6,6 +6,7 @@ const secret = new TextEncoder().encode(process.env.AUTH_SECRET);
 const cookieName = "auth_token";
 
 // Encrypt and sign token
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function signAuthToken(payload: any) {
   try {
     const token = await new SignJWT(payload)
@@ -58,7 +59,7 @@ export async function setAuthCookie(token: string) {
 }
 
 // Get auth cookie
-export async function getAuthCookie(): string | null {
+export async function getAuthCookie() {
   try {
     const cookieStore = await cookies();
     const token = cookieStore.get(cookieName);
