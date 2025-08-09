@@ -1,6 +1,6 @@
 import { getTickets } from "@/actions/ticket.actions";
 import { getCurrentUser } from "@/lib/current-user";
-import { redirect } from "next/dist/server/api-utils";
+import { redirect } from "next/navigation";
 import TicketItem from "@/components/TicketItem";
 
 const TicketsPage = async () => {
