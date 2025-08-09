@@ -3,6 +3,7 @@ import { logEvent } from "@/utils/sentry";
 import { getTicketById } from "@/actions/ticket.actions";
 import Link from "next/link";
 import { getPriorityClass } from "@/utils/ui";
+import CloseTicketButton from "@/components/CloseTicketButton";
 
 const TicketsDetailsPage = async (props: {
   params: Promise<{ id: string }>;
@@ -32,23 +33,34 @@ const TicketsDetailsPage = async (props: {
         </div>
 
         <div className="text-gray-700">
+          <h2 className="text-lg font-semibold mb-2">Ticket Status</h2>
+          <p
+            className={`text-lg font-semibold ${
+              ticket.status === "Closed" ? "text-red-600" : "text-green-600"
+            }`}
+          >
+            {ticket.status}
+          </p>
+        </div>
+
+        <div className="text-gray-700">
           <h2 className="text-lg font-semibold mb-2">Created At</h2>
           <p>{new Date(ticket.createdAt).toLocaleString()}</p>
         </div>
 
         <Link
           href="/tickets"
-          className="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
+          className="inline-block bg-blue-600 text-white px-4 py-2  rounded hover:bg-blue-700 transition"
         >
           ← Back to Tickets
         </Link>
-        {/* 
+
         {ticket.status !== "Closed" && (
           <CloseTicketButton
             ticketId={ticket.id}
             isClosed={ticket.status === "Closed"}
           />
-        )} */}
+        )}
       </div>
     </div>
   );

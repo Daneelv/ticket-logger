@@ -172,8 +172,5 @@ export async function closeTicket(
     data: { status: "Closed" },
   });
 
-  revalidatePath("/tickets");
-  revalidatePath(`/tickets/${ticketId}`);
-
   return { success: true, message: "Ticket closed successfully" };
 }
